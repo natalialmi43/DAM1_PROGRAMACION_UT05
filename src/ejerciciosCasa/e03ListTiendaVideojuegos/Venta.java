@@ -26,4 +26,9 @@ public class Venta {
     public LocalDate getFechaVenta() {
         return fechaVenta;
     }
+
+
+    public String toString() {
+        return "Fecha: " + fechaVenta + " Cliente: " + cliente.getNombre() + " Artículos comprados: " + listaVideojuego.size();
+    }
 }
