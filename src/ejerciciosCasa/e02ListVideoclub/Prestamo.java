@@ -55,4 +55,10 @@ public class Prestamo {
     public void setFechaDevolucion(LocalDate fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
+
+    public String toString(){
+
+        return cliente + " con "+ pelicula + " con fecha de prestamo " + fechaPrestamo +
+                " y fecha de devolucion " + fechaDevolucion;
+    }
 }
