@@ -55,4 +55,24 @@ public class Cliente {
             this.codCliente = codCliente;
         }
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public int getCodCliente() {
+        return codCliente;
+    }
 }
