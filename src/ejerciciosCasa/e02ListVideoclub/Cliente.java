@@ -6,8 +6,8 @@ public class Cliente {
     private String nombre;
 
     public Cliente(int numeroCarnet, String nombre) {
-        this.numeroCarnet = numeroCarnet;
-        this.nombre = nombre;
+        setNumeroCarnet(numeroCarnet);
+        setNombre(nombre);
     }
 
     public void setNumeroCarnet(int numeroCarnet) {
@@ -32,6 +32,6 @@ public class Cliente {
 
     public String toString(){
 
-        return "El cliente " + nombre + " con numero de carnet "+ numeroCarnet;
+        return "El cliente '" + nombre + "' con numero de carnet: "+ numeroCarnet;
     }
 }
