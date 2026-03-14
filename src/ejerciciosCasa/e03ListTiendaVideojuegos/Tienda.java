@@ -144,6 +144,7 @@ public class Tienda {
                 conteo.put(genero, conteo.getOrDefault(genero,0)+1);
             }
         }
+        return conteo;
     }
 
 
