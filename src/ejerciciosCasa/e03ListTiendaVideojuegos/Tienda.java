@@ -23,6 +23,11 @@ public class Tienda {
         listadoVideojuegos.add(videojuego);
     }
 
+    //Se añade cliente
+    public void addCliente (Cliente cliente){
+        listadoClientes.add(cliente);
+    }
+
     // Mostrar todo el inventario.
     public ArrayList <Videojuego> getListadoVideojuegos(){
         return listadoVideojuegos;
