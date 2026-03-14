@@ -61,6 +61,30 @@ public class Videojuego {
         }
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getPlataforma() {
+        return plataforma;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public UUID getCodId() {
+        return codId;
+    }
+
     public String toString(){
         return "El video juego '" + titulo + "' de la plataforma " + plataforma + " de genero " + genero + " que cuesta "
                 + precio + " quedan " + stock + " en stock, su UUID es " + codId;
