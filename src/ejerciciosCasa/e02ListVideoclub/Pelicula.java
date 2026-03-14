@@ -6,8 +6,8 @@ public class Pelicula {
     private String titulo;
 
     public Pelicula(int codigo, String titulo) {
-        this.codigo = codigo;
-        this.titulo = titulo;
+        setCodigo(codigo);
+        setTitulo(titulo);
     }
 
     public void setCodigo(int codigo) {
@@ -32,9 +32,6 @@ public class Pelicula {
 
 
     public String toString() {
-        return "Pelicula{" +
-                "codigo=" + codigo +
-                ", titulo='" + titulo + '\'' +
-                '}';
+        return "La pelicula "+ titulo + " con codigo "+ codigo;
     }
 }
