@@ -6,12 +6,12 @@ import java.util.ArrayList;
 public class Venta {
 
     private Cliente cliente;
-    private ArrayList <Videojuego> videojuego;
+    private ArrayList <Videojuego> listaVideojuego;
     private LocalDate fechaVenta;
 
-    public Venta(Cliente cliente, ArrayList<Videojuego> videojuego) {
+    public Venta(Cliente cliente, ArrayList<Videojuego> listaVideojuego) {
         this.cliente = cliente;
-        this.videojuego = videojuego;
+        this.listaVideojuego = listaVideojuego;
         this.fechaVenta = LocalDate.now();
     }
 
@@ -19,8 +19,8 @@ public class Venta {
         return cliente;
     }
 
-    public ArrayList<Videojuego> getVideojuego() {
-        return videojuego;
+    public ArrayList<Videojuego> getListaVideojuego() {
+        return listaVideojuego;
     }
 
     public LocalDate getFechaVenta() {
