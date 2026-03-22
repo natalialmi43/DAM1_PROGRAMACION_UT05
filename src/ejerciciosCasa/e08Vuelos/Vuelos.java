@@ -1,6 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Vuelos {
 
@@ -54,8 +52,10 @@ public class Vuelos {
         pasajerosAF890.put("22334455J", 265.50); // REPETIDO
         vuelosPasajerosCoste.put("AF890", pasajerosAF890);
 
+
         // TODO - Generar un set con los identificadores de los vuelos
         System.out.println(getIdentificadoresVuelos(vuelosPasajerosCoste));
+
 
         // TODO - Mostrar el precio del billete más caro
         System.out.printf(
@@ -76,31 +76,71 @@ public class Vuelos {
         );
     }
 
-    public static Set<String> getIdentificadoresVuelos(
-        Map<String, Map<String, Double>> vuelosPasajerosCoste
-    ) {
-        // TODO
-        return null;
+    public static Set<String> getIdentificadoresVuelos(Map<String, Map<String, Double>> vuelosPasajerosCoste) {
+
+        return vuelosPasajerosCoste.keySet();
     }
 
-    public static Double getBilleteMasCaro(
-        Map<String, Map<String, Double>> vuelosPasajerosCoste
-    ) {
-        // TODO
-        return 0.0;
+    public static Double getBilleteMasCaro(Map<String, Map<String, Double>> vuelosPasajerosCoste) {
+
+        double precioMax = 0;
+
+        for (Map<String, Double> pasajeros : vuelosPasajerosCoste.values()) {
+            for (double precio : pasajeros.values()){
+
+                if (precio > precioMax){
+                    precioMax = precio;
+                }
+            }
+        }
+        return precioMax;
     }
 
-    public static Map<String, Double> getPreciosMedios(
-        Map<String, Map<String, Double>> vuelosPasajerosCoste
-    ) {
-        // TODO
-        return null;
+    public static Map<String, Double> getPreciosMedios(Map<String, Map<String, Double>> vuelosPasajerosCoste) {
+
+        Map<String, Double> precioMedioBilletePorVuelo = new HashMap<>();
+
+        for (String idVuelo : vuelosPasajerosCoste.keySet()){
+            //Aqui no hace falta otro for porque ya conocemos la key, y con ella ya nos da los valores de dentro.
+            Map<String, Double> pasajeros = vuelosPasajerosCoste.get(idVuelo);
+            //Se declara fuera para que se inicie cada que cambie de id
+            double sumaPrecios = 0.00;
+            // Este se hace para irle sumando el precio de cada billete que forman la id
+            for (Double precio : pasajeros.values()){
+                sumaPrecios += precio;
+            }
+
+            double media = sumaPrecios/pasajeros.size();
+
+            precioMedioBilletePorVuelo.put(idVuelo, media);
+        }
+
+        return precioMedioBilletePorVuelo;
+
+
     }
 
-    public static Map<String, Double> getGastoPorDNI(
-        Map<String, Map<String, Double>> vuelosPasajerosCoste
-    ) {
-        // TODO
-        return null;
+    public static Map<String, Double> getGastoPorDNI(Map<String, Map<String, Double>> vuelosPasajerosCoste) {
+
+        Map<String, Double> gastoAsociadoACadaDNI = new HashMap<>();
+
+        //Se recorre cada id de cada vuelo
+        for (String idVuelo : vuelosPasajerosCoste.keySet()) {
+            // Como ya conocemos la key, se crea un nuevo map con id.get
+            Map<String, Double> pasajeros = vuelosPasajerosCoste.get(idVuelo);
+            //Se hace otro for para recorrer todos los dni y coger la key
+            for (String dniPasajeros : pasajeros.keySet()){
+                //Como ya tenemos la key con get se obtiene el precio
+                Double preciobillete = pasajeros.get(dniPasajeros);
+                // Mirar a ver si estaba el dni en otro vuelo
+                if (gastoAsociadoACadaDNI.containsKey(dniPasajeros)) {
+                    double gastoAcumulado = gastoAsociadoACadaDNI.get(dniPasajeros);
+                    gastoAsociadoACadaDNI.put(dniPasajeros, gastoAcumulado + preciobillete);
+                } else {
+                    gastoAsociadoACadaDNI.put(dniPasajeros, preciobillete);
+                }
+            }
+        }
+        return gastoAsociadoACadaDNI;
     }
 }
