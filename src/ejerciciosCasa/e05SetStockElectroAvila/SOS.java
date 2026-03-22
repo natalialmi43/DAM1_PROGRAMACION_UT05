@@ -26,10 +26,13 @@ public class SOS {
         // Fernando > Burgos > 4500
         Map<String, Map<String, Integer>> ventasPorVendedor = new HashMap<>();
 
+        /*
         for (String ventasPorCiudad: ventasPorZona.keySet()){
             System.out.println(ventasPorCiudad);
             for (String vendedor : ventasPorZona.)
         }
+
+         */
 
 
 
