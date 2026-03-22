@@ -1,4 +1,4 @@
-package Tema5.ordenacion;
+package ejerciciosCasa.e09Ordenacion;
 
 import java.util.Objects;
 
@@ -24,10 +24,24 @@ public class Producto implements Comparable<Producto> {
     // --- TAREA DEL ALUMNO 1 ---
     // Implementar equals y hashCode basándose en el 'id'.
 
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Producto producto)) return false;
+        return Objects.equals(id, producto.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
     // --- TAREA DEL ALUMNO 2 ---
     // Implementar compareTo para que la ordenación por defecto sea por ID.
+
+
     @Override
     public int compareTo(Producto otro) {
-        return 0; // Cambiar esto
+        return this.id.compareTo(otro.id);
     }
 }
