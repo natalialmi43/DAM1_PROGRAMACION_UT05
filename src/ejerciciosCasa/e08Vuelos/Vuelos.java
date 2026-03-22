@@ -59,20 +59,20 @@ public class Vuelos {
 
         // TODO - Mostrar el precio del billete más caro
         System.out.printf(
-            "El billete más caro ha sido de %.2f %n",
-            getBilleteMasCaro(vuelosPasajerosCoste)
+                "El billete más caro ha sido de %.2f %n",
+                getBilleteMasCaro(vuelosPasajerosCoste)
         );
 
         // TODO - Crear un Map que la clave sea el vuelo y el value el precio medio del billete
         System.out.println(
-            "El precio medio de cada vuelo ha sido " +
-                getPreciosMedios(vuelosPasajerosCoste)
+                "El precio medio de cada vuelo ha sido " +
+                        getPreciosMedios(vuelosPasajerosCoste)
         );
 
         // TODO - Crear un MAP que la clave sea el DNI y el value el precio que se ha gastado en billetes
         System.out.println(
-            "El gasto por cada pasajero ha sido de " +
-                getGastoPorDNI(vuelosPasajerosCoste)
+                "El gasto por cada pasajero ha sido de " +
+                        getGastoPorDNI(vuelosPasajerosCoste)
         );
     }
 
@@ -86,9 +86,9 @@ public class Vuelos {
         double precioMax = 0;
 
         for (Map<String, Double> pasajeros : vuelosPasajerosCoste.values()) {
-            for (double precio : pasajeros.values()){
+            for (double precio : pasajeros.values()) {
 
-                if (precio > precioMax){
+                if (precio > precioMax) {
                     precioMax = precio;
                 }
             }
@@ -100,24 +100,21 @@ public class Vuelos {
 
         Map<String, Double> precioMedioBilletePorVuelo = new HashMap<>();
 
-        for (String idVuelo : vuelosPasajerosCoste.keySet()){
+        for (String idVuelo : vuelosPasajerosCoste.keySet()) {
             //Aqui no hace falta otro for porque ya conocemos la key, y con ella ya nos da los valores de dentro.
             Map<String, Double> pasajeros = vuelosPasajerosCoste.get(idVuelo);
             //Se declara fuera para que se inicie cada que cambie de id
             double sumaPrecios = 0.00;
             // Este se hace para irle sumando el precio de cada billete que forman la id
-            for (Double precio : pasajeros.values()){
+            for (Double precio : pasajeros.values()) {
                 sumaPrecios += precio;
             }
 
-            double media = sumaPrecios/pasajeros.size();
+            double media = sumaPrecios / pasajeros.size();
 
             precioMedioBilletePorVuelo.put(idVuelo, media);
         }
-
         return precioMedioBilletePorVuelo;
-
-
     }
 
     public static Map<String, Double> getGastoPorDNI(Map<String, Map<String, Double>> vuelosPasajerosCoste) {
@@ -129,7 +126,7 @@ public class Vuelos {
             // Como ya conocemos la key, se crea un nuevo map con id.get
             Map<String, Double> pasajeros = vuelosPasajerosCoste.get(idVuelo);
             //Se hace otro for para recorrer todos los dni y coger la key
-            for (String dniPasajeros : pasajeros.keySet()){
+            for (String dniPasajeros : pasajeros.keySet()) {
                 //Como ya tenemos la key con get se obtiene el precio
                 Double preciobillete = pasajeros.get(dniPasajeros);
                 // Mirar a ver si estaba el dni en otro vuelo
