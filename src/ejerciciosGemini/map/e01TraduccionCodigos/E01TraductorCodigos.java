@@ -1,4 +1,4 @@
-package ejerciciosGemini.map;
+package ejerciciosGemini.map.e01TraduccionCodigos;
 
 import java.util.HashMap;
 import java.util.Map;
