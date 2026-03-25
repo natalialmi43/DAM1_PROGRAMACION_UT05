@@ -33,8 +33,23 @@ public class OperacionAlonso {
 
         // T2: Agrupación Anidada: Zona -> { TipoAcceso -> Conteo de Fallos }
         // Solo procesar si "autorizado" es false.
-        Map<String, Map<String, Integer>> mapaFallos = new HashMap<>();
+        Map<String, Map<String, Integer>> mapaFallos = new HashMap<>(eventosUnicos);
         // TODO: Rellenar mapaFallos. Ejemplo: "Servidores" -> {"Login": 2}
+
+        for (String sitio : mapaFallos.keySet()){
+
+            Map<String, Integer> entradaNumeroFallos = mapaFallos.get(sitio);
+
+            int k = 0;
+
+            for (int fallos : entradaNumeroFallos.values()){
+                if (){
+
+                }
+            }
+
+            mapaFallos.put(sitio,entradaNumeroFallos);
+        }
 
 
         // T3: Detección de Brechas de Seguridad (List)
