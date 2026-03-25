@@ -1,4 +1,4 @@
-package Tema5.analizadorCiberseguridad;
+package ejerciciosCasa.e10Ciberseguridad;
 
 public class Log {
 
