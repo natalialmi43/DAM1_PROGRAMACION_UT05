@@ -1,4 +1,4 @@
-package ejerciciosGemini.map.e03SimilarVuelosSupermercado;
+package ejerciciosGemini.map.e03SimilarVuelos;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

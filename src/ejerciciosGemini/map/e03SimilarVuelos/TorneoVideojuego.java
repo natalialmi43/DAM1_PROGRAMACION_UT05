@@ -1,7 +1,6 @@
-package ejerciciosGemini.map.e05TorneoVideojuego;
+package ejerciciosGemini.map.e03SimilarVuelos;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
