@@ -1,7 +1,7 @@
 package ejerciciosCasa.e10Ciberseguridad;
 
 import java.util.*;
-
+/*
 public class OperacionAlonso {
     public static void main(String[] args) {
         // 1. DATASET INICIAL (Simulación de JSON/NoSQL)
@@ -71,3 +71,6 @@ public class OperacionAlonso {
         System.out.println("Frecuencia de Tipos de Ataque: " + frecuenciaTipos);
     }
 }
+
+
+ */

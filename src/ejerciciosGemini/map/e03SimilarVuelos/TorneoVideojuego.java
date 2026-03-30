@@ -1,5 +1,5 @@
 package ejerciciosGemini.map.e03SimilarVuelos;
-
+/*
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -58,16 +58,51 @@ public class TorneoVideojuego {
     // Devuelve: Un mapa donde la clave es la Región y el valor es el número de jugadores en ese servidor.
     // Pista: El método .size() te da el tamaño de un Map.
     public static Map<String, Integer> getVolumenJugadores(Map<String, Map<String, Integer>> torneo) {
-        // TODO
-        return null;
+
+        Map<String, Integer> jugadoresPorRegion = new HashMap<>();
+
+        for (String nombreZona : torneo.keySet()){
+            Map<String, Integer> nombreJuegoJugadores = torneo.get(nombreZona);
+            int contador = 0;
+            for (Integer numeroJugadores : nombreJuegoJugadores.values()){
+               contador+=numeroJugadores;
+            }
+            jugadoresPorRegion.put(nombreZona,contador);
+        }
+        return jugadoresPorRegion;
     }
 
     // EJERCICIO 2: OJO AQUÍ. No quiero saber cuál es la puntuación máxima.
     // Quiero saber el NICKNAME del jugador que la consiguió.
     // Pista: Vas a necesitar dos variables de control antes de los bucles: una para los puntos máximos (int) y otra para guardar el nombre (String).
     public static String getNicknameMVP(Map<String, Map<String, Integer>> torneo) {
-        // TODO
-        return "Nadie";
+/*
+        String nickNameJugadorConPuntuacionMaxima = "No";
+        int contador = 0;
+        for (Map<String, Integer> jugadorPuntacion : torneo.values()){
+            for (Integer puntuacion : jugadorPuntacion.values()){
+                if (puntuacion > contador ){
+                    contador = puntuacion;
+                    nickNameJugadorConPuntuacionMaxima = String.valueOf(jugadorPuntacion.get(puntuacion));
+                }
+            }
+        }
+
+        return nickNameJugadorConPuntuacionMaxima;
+
+ */
+        /*
+        int k = 0;
+
+        for (String zona : torneo.keySet()){
+            Map<String, Integer> nombrePuntos = torneo.get(zona);
+            for (String nombre : nombrePuntos.keySet()){
+                if (k )
+            }
+
+
+        }
+
     }
 
     // EJERCICIO 3: El clásico de acumular. Hay jugadores que han jugado en varios servidores.
@@ -84,5 +119,9 @@ public class TorneoVideojuego {
     public static Set<String> getRegionesNivelAlto(Map<String, Map<String, Integer>> torneo) {
         // TODO
         return null;
+
+
     }
 }
+
+*/

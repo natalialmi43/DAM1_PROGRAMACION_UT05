@@ -33,12 +33,24 @@ public class AnalizadorCiberseguridad {
         // T2: Mapa de frecuencia de IPs (¿Qué IP ataca más?)
         Map<String, Integer> ataquesPorIP = new HashMap<>();
         // TODO: Rellenar el mapa: IP -> Cantidad de apariciones
+/*
+        for (Log arr : logsBrutos){
+            int contador = 0;
+            if(arr.idLog == arr.idLog){
+                contador++;
+            }
 
+            ataquesPorIP.put(arr.idLog, contador);
+        }
+
+ */
 
         // T3: Agrupar Logs únicos por NIVEL DE RIESGO (Map de Listas)
         // Ejemplo: "CRÍTICO" -> [Log101, Log103], "MEDIO" -> [Log102, Log104]
         Map<String, List<Log>> reporteRiesgo = new HashMap<>();
         // TODO: Iterar logsUnicos, obtener riesgo de 'nivelRiesgoZona' y agrupar
+
+
 
 
         // T4: Extraer IDs de cámaras que necesitan revisión (Solo si son LogCamara)

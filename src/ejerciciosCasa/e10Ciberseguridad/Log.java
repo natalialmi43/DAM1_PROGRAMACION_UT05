@@ -1,5 +1,7 @@
 package ejerciciosCasa.e10Ciberseguridad;
 
+import java.util.Objects;
+
 public class Log {
 
     int idLog;
@@ -14,16 +16,15 @@ public class Log {
 
     // TODO el equals y el hashcode solo funcionaran con el id
 
-    // TODO
+
     @Override
-    public boolean equals(Object o) {
-        return false;
+    public boolean equals(Object object) {
+        if (!(object instanceof Log log)) return false;
+        return idLog == log.idLog;
     }
 
-    // TODO
     @Override
     public int hashCode() {
-        return 0;
+        return Objects.hashCode(idLog);
     }
-
 }
