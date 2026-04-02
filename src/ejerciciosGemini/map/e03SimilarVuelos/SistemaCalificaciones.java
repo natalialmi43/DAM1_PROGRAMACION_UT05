@@ -50,28 +50,65 @@ public class SistemaCalificaciones {
 
     public static Set<String> getTodasLasAsignaturas(Map<String, Map<String, Double>> notas) {
 
+
         Set<String> asignaturas = new HashSet<>();
 
-        for ( Map<String, Double> mapaAsignaturaNotas = notas.values()){
-            asignaturas =
-
+        for ( Map<String, Double> mapaAsignaturasNotas : notas.values()){
+            asignaturas = mapaAsignaturasNotas.keySet();
         }
 
-        return asignaturas;
+        return  asignaturas;
     }
 
     public static Double getNotaMasBaja(Map<String, Map<String, Double>> notas) {
-        // Tu código aquí.
-        return 10.0; // Empezamos en 10.0 para ir buscando hacia abajo
+
+        Double notaMasBaja = 10.00;
+
+        for (Map<String, Double> asignaturaNotas : notas.values()){
+            for (Double nota : asignaturaNotas.values()){
+                if (notaMasBaja > nota){
+                    notaMasBaja = nota;
+                }
+            }
+        }
+
+        return notaMasBaja;
     }
 
     public static Map<String, Integer> getSuspensosPorAlumno(Map<String, Map<String, Double>> notas) {
-        // Tu código aquí.
-        return null;
+
+        Map<String, Integer> alumnoSuspensos = new HashMap<>();
+
+        for (Map.Entry<String, Map<String, Double>> mapaCompleto : notas.entrySet()){
+            String alumno = mapaCompleto.getKey();
+            Map<String, Double> asignaturaNota = mapaCompleto.getValue();
+            Integer contadorSuspensos = 0;
+            for ( Double nota : asignaturaNota.values()){
+                if (nota < 5){
+                    contadorSuspensos++;
+                }
+            }
+
+            alumnoSuspensos.put(alumno, contadorSuspensos);
+        }
+
+        return alumnoSuspensos;
     }
 
     public static Map<String, Double> getSumaNotasPorAsignatura(Map<String, Map<String, Double>> notas) {
-        // Tu código aquí.
-        return null;
+
+        Map<String, Double> notasPorAsignatura = new HashMap<>();
+
+        for (Map<String, Double> notasAsignatura : notas.values()){
+            for (Map.Entry<String, Double> todo : notasAsignatura.entrySet()){
+                String asignatura = todo.getKey();
+                Double nota = todo.getValue();
+
+                Double acumulado = notasAsignatura.getOrDefault(asignatura, 0.00);
+
+                notasPorAsignatura.put(asignatura, nota+acumulado);
+                }
+            }
+        return notasPorAsignatura;
     }
 }
