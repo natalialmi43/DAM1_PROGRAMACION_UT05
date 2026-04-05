@@ -1,7 +1,7 @@
 package ejerciciosCasa.e10Ciberseguridad;
 
 import java.util.*;
-/*
+
 public class OperacionAlonso {
     public static void main(String[] args) {
         // 1. DATASET INICIAL (Simulación de JSON/NoSQL)
@@ -33,24 +33,30 @@ public class OperacionAlonso {
 
         // T2: Agrupación Anidada: Zona -> { TipoAcceso -> Conteo de Fallos }
         // Solo procesar si "autorizado" es false.
-        Map<String, Map<String, Integer>> mapaFallos = new HashMap<>(eventosUnicos);
+        Map<String, Map<String, Integer>> mapaFallos = new HashMap<>();
         // TODO: Rellenar mapaFallos. Ejemplo: "Servidores" -> {"Login": 2}
 
-        for (String sitio : mapaFallos.keySet()){
+        for (Map<String, Object> evento : eventosUnicos){
 
-            Map<String, Integer> entradaNumeroFallos = mapaFallos.get(sitio);
+            Boolean autorizado = (Boolean) evento.get("autorizado");
 
-            int k = 0;
+            if (!autorizado){
 
-            for (int fallos : entradaNumeroFallos.values()){
-                if (){
+                String zona = (String) evento.get("zona");
+                String tipo = (String) evento.get("tipo");
 
-                }
+                // 2. Recuperamos el historial de esa zona (si no existe, creamos un mapa interno nuevo)
+                Map<String, Integer> fallosDeEstaZona = mapaFallos.getOrDefault(zona, new HashMap<>());
+
+                // 3. Contamos el tipo de ataque dentro de ese mapa interno
+                Integer conteoTipo = fallosDeEstaZona.getOrDefault(tipo, 0);
+                fallosDeEstaZona.put(tipo, conteoTipo + 1);
+
+                // 4. Guardamos el mapa interno actualizado de vuelta en la zona
+                mapaFallos.put(zona, fallosDeEstaZona);
+
             }
-
-            mapaFallos.put(sitio,entradaNumeroFallos);
         }
-
 
         // T3: Detección de Brechas de Seguridad (List)
         // Si el total de fallos de una zona en 'mapaFallos' > limite en 'limitesZona'
@@ -71,6 +77,3 @@ public class OperacionAlonso {
         System.out.println("Frecuencia de Tipos de Ataque: " + frecuenciaTipos);
     }
 }
-
-
- */

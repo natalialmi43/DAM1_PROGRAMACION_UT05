@@ -33,30 +33,44 @@ public class AnalizadorCiberseguridad {
         // T2: Mapa de frecuencia de IPs (¿Qué IP ataca más?)
         Map<String, Integer> ataquesPorIP = new HashMap<>();
         // TODO: Rellenar el mapa: IP -> Cantidad de apariciones
-/*
-        for (Log arr : logsBrutos){
-            int contador = 0;
-            if(arr.idLog == arr.idLog){
-                contador++;
-            }
 
-            ataquesPorIP.put(arr.idLog, contador);
+        for (Log logActual : logsBrutos){
+            String ip = logActual.getIpOrigen();
+            Integer ataques = ataquesPorIP.getOrDefault(ip, 0);
+
+            ataquesPorIP.put(ip, ataques +1);
         }
-
- */
 
         // T3: Agrupar Logs únicos por NIVEL DE RIESGO (Map de Listas)
         // Ejemplo: "CRÍTICO" -> [Log101, Log103], "MEDIO" -> [Log102, Log104]
         Map<String, List<Log>> reporteRiesgo = new HashMap<>();
         // TODO: Iterar logsUnicos, obtener riesgo de 'nivelRiesgoZona' y agrupar
 
+        for (Log logActual : logsUnicos) {
+            // 1. Averiguamos la zona y su riesgo correspondiente
+            String zona = logActual.getUbicacion();
+            String nivelRiesgo = nivelRiesgoZona.get(zona);
 
+            // 2. Recuperamos la lista de ese riesgo. Si no existe, creamos un ArrayList vacío.
+            List<Log> listaParaEsteRiesgo = reporteRiesgo.getOrDefault(nivelRiesgo, new ArrayList<>());
 
+            // 3. Metemos el objeto log en la lista
+            listaParaEsteRiesgo.add(logActual);
+
+            // 4. Actualizamos el mapa
+            reporteRiesgo.put(nivelRiesgo, listaParaEsteRiesgo);
+        }
 
         // T4: Extraer IDs de cámaras que necesitan revisión (Solo si son LogCamara)
         Set<Integer> idsRevisionVisual = new TreeSet<>(); // TreeSet para que salgan ordenados
         // TODO: Usar instanceof y casting para filtrar solo LogCamara e insertar sus IDs
 
+        for (Log log : logsBrutos){
+            if(log instanceof LogCamara){
+                LogCamara camara = (LogCamara) log;
+                idsRevisionVisual.add(camara.getIdLog());
+            }
+        }
 
         // --- SALIDA DE RESULTADOS ---
         System.out.println("\n--- Informe Final de CiberSegurÁvila ---");
