@@ -27,4 +27,16 @@ public class Log {
     public int hashCode() {
         return Objects.hashCode(idLog);
     }
+
+    public int getIdLog() {
+        return idLog;
+    }
+
+    public String getIpOrigen() {
+        return ipOrigen;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
 }
