@@ -1,0 +1,146 @@
+package ejerciciosGemini.map.e03SimilarVuelos;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class Vuelos2 {
+
+    public static void main(String[] args) {
+        Map<String, Map<String, Double>> vuelosPasajerosCoste = new HashMap<>();
+
+        // Vuelo IB123 (Iberia Madrid-Barcelona)
+        Map<String, Double> pasajerosIB123 = new HashMap<>();
+        pasajerosIB123.put("12345678A", 150.50);
+        pasajerosIB123.put("87654321B", 200.75);
+        pasajerosIB123.put("11223344C", 175.25);
+        pasajerosIB123.put("55667788E", 185.90);
+        vuelosPasajerosCoste.put("IB123", pasajerosIB123);
+
+        // Vuelo FR456 (Ryanair Madrid-Londres)
+        Map<String, Double> pasajerosFR456 = new HashMap<>();
+        pasajerosFR456.put("44332211D", 89.99);
+        pasajerosFR456.put("55667788E", 120.50); // REPETIDO - mismo pasajero, precio diferente
+        pasajerosFR456.put("99887766F", 95.75);
+        pasajerosFR456.put("12345678A", 110.25); // REPETIDO - mismo pasajero, precio diferente
+        vuelosPasajerosCoste.put("FR456", pasajerosFR456);
+
+        // Vuelo LH789 (Lufthansa Madrid-Múnich)
+        Map<String, Double> pasajerosLH789 = new HashMap<>();
+        pasajerosLH789.put("77889900H", 320.80);
+        pasajerosLH789.put("87654321B", 285.45); // REPETIDO
+        pasajerosLH789.put("33445566G", 295.60);
+        vuelosPasajerosCoste.put("LH789", pasajerosLH789);
+
+        // Vuelo VY234 (Vueling Barcelona-París)
+        Map<String, Double> pasajerosVY234 = new HashMap<>();
+        pasajerosVY234.put("22334455J", 165.30);
+        pasajerosVY234.put("11223344C", 180.90); // REPETIDO
+        pasajerosVY234.put("55443322L", 155.60);
+        pasajerosVY234.put("44332211D", 170.45); // REPETIDO
+        vuelosPasajerosCoste.put("VY234", pasajerosVY234);
+
+        // Vuelo UX567 (Air Europa Madrid-Roma)
+        Map<String, Double> pasajerosUX567 = new HashMap<>();
+        pasajerosUX567.put("99001122M", 245.75);
+        pasajerosUX567.put("55667788E", 230.40); // REPETIDO - tercera vez
+        pasajerosUX567.put("77889900H", 260.15); // REPETIDO
+        pasajerosUX567.put("11998877P", 225.85);
+        pasajerosUX567.put("87654321B", 240.20); // REPETIDO - tercera vez
+        vuelosPasajerosCoste.put("UX567", pasajerosUX567);
+
+        // Vuelo AF890 (Air France Madrid-París)
+        Map<String, Double> pasajerosAF890 = new HashMap<>();
+        pasajerosAF890.put("12345678A", 275.30); // REPETIDO - tercera vez
+        pasajerosAF890.put("99887766F", 290.85); // REPETIDO
+        pasajerosAF890.put("22334455J", 265.50); // REPETIDO
+        vuelosPasajerosCoste.put("AF890", pasajerosAF890);
+
+
+        // TODO - Generar un set con los identificadores de los vuelos
+        System.out.println(getIdentificadoresVuelos(vuelosPasajerosCoste));
+
+
+        // TODO - Mostrar el precio del billete más caro
+        System.out.printf(
+                "El billete más caro ha sido de %.2f %n",
+                getBilleteMasCaro(vuelosPasajerosCoste)
+        );
+
+        // TODO - Crear un Map que la clave sea el vuelo y el value el precio medio del billete
+        System.out.println(
+                "El precio medio de cada vuelo ha sido " +
+                        getPreciosMedios(vuelosPasajerosCoste)
+        );
+
+        // TODO - Crear un MAP que la clave sea el DNI y el value el precio que se ha gastado en billetes
+        System.out.println(
+                "El gasto por cada pasajero ha sido de " +
+                        getGastoPorDNI(vuelosPasajerosCoste)
+        );
+    }
+
+    public static Set<String> getIdentificadoresVuelos(Map<String, Map<String, Double>> vuelosPasajerosCoste) {
+        return vuelosPasajerosCoste.keySet();
+    }
+
+
+    public static Double getBilleteMasCaro(Map<String, Map<String, Double>> vuelosPasajerosCoste) {
+        // TODO - Mostrar el precio del billete más caro
+        Double billeteMasCaro = 0.0;
+
+        for (Map<String, Double> pasajeroPrecio : vuelosPasajerosCoste.values()){
+            for (Double precio : pasajeroPrecio.values()){
+                if (billeteMasCaro < precio){
+                    billeteMasCaro = precio;
+                }
+            }
+        }
+
+        return billeteMasCaro;
+    }
+
+    public static Map<String, Double> getPreciosMedios(Map<String, Map<String, Double>> vuelosPasajerosCoste) {
+        // TODO - Crear un Map que la clave sea el vuelo y el value el precio medio del billete
+
+        Map<String, Double> precioMedioVuelo  = new HashMap<>();
+
+        for (Map.Entry<String, Map<String, Double>> completo : vuelosPasajerosCoste.entrySet()){
+            String vuelo = completo.getKey();
+            Map<String, Double> pasajeroPrecio = completo.getValue();
+            Double precioTotal = 0.0;
+            for (Double precioBillete : pasajeroPrecio.values()){
+                precioTotal += precioBillete;
+            }
+            Double precioMedio  = precioTotal/pasajeroPrecio.size();
+
+            precioMedioVuelo.put(vuelo, precioMedio);
+        }
+
+        return precioMedioVuelo;
+
+    }
+
+    // Map<String, Map<String, Double>> vuelosPasajerosCoste = new HashMap<>();
+
+    public static Map<String, Double> getGastoPorDNI(Map<String, Map<String, Double>> vuelosPasajerosCoste) {
+        // TODO - Crear un MAP que la clave sea el DNI y el value el precio que se ha gastado en billetes
+
+        Map<String, Double> gastoPorPasajero = new HashMap<>();
+
+        for (Map<String, Double> pasajeroPrecio : vuelosPasajerosCoste.values()){
+            for (Map.Entry<String, Double> pasajeroPrecioDesglosado : pasajeroPrecio.entrySet()){
+                String dni = pasajeroPrecioDesglosado.getKey();
+                Double precio = pasajeroPrecioDesglosado.getValue();
+                Double precioBillete = gastoPorPasajero.getOrDefault(dni, 0.00);
+                Double precioTotalPasajero = precio + precioBillete;
+
+                gastoPorPasajero.put(dni, precioTotalPasajero);
+            }
+
+        }
+
+        return gastoPorPasajero;
+
+    }
+}
