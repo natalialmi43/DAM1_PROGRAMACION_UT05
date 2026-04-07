@@ -28,7 +28,7 @@ public class GestorLogistica {
         // --- INICIO DE TRANSFORMACIONES ---
 
         // TODO T1: Eliminar duplicados de la lista 'enviosBrutos' usando la colección adecuada.
-        Set<Envio> enviosUnicos = null; // Reemplaza null por tu código
+        Set<Envio> enviosUnicos = new HashSet<>(enviosBrutos); // Reemplaza null por tu código
 
         System.out.println("Envíos únicos a procesar: " + (enviosUnicos != null ? enviosUnicos.size() : 0));
 
@@ -38,6 +38,13 @@ public class GestorLogistica {
         Map<String, Integer> enviosPorCliente = new HashMap<>();
         // Escribe aquí tu bucle
 
+        for (Envio cliente : enviosBrutos){
+           String nombreCliente = cliente.getCliente();
+           Integer contador = enviosPorCliente.getOrDefault(nombreCliente, 0);
+
+            enviosPorCliente.put(nombreCliente, contador + 1);
+        }
+
 
 
         // TODO T3: Agrupar envíos únicos por ZONA LOGÍSTICA.
@@ -45,6 +52,18 @@ public class GestorLogistica {
         // Debes cruzar la ciudad del envío con el mapa 'zonasPorCiudad'.
         Map<String, List<Envio>> agrupacionPorZona = new HashMap<>();
         // Escribe aquí tu bucle
+
+        /*
+        for ( Envio envio : enviosUnicos){
+            String ciudad = envio.getCiudadDestino();
+            String zona = zonasPorCiudad.getOrDefault(ciudad, "ZONA DESCONOCIDA");
+
+
+        }
+
+        agrupacionPorZona.put();
+
+         */
 
 
 

@@ -44,7 +44,14 @@ public class PlataformaStreaming {
      */
     public static int obtenerCantidadSeriesPorGenero(Map<String, List<String>> catalogo, String generoBuscado) {
         // TODO: Implementar
-        return 0;
+         int numeroSeries = 0;
+         if (catalogo.containsKey(generoBuscado)){
+             for (List<String> series : catalogo.values()){
+                 numeroSeries = series.size();
+             }
+         }
+
+        return numeroSeries;
     }
 
     /**
@@ -55,7 +62,19 @@ public class PlataformaStreaming {
      */
     public static String buscarGeneroDeSerie(Map<String, List<String>> catalogo, String tituloSerie) {
         // TODO: Implementar
-        return null;
+
+        String genero = "Desconocido";
+
+        for (Map.Entry<String, List<String>> mapa : catalogo.entrySet()){
+            String nombreGenero = mapa.getKey();
+            List<String> listadoSerie = mapa.getValue();
+
+            if (listadoSerie.contains(tituloSerie)){
+                genero = nombreGenero;
+            }
+        }
+
+        return genero;
     }
 
     /**
@@ -68,6 +87,21 @@ public class PlataformaStreaming {
      */
     public static Map<String, Integer> generarPerfilGeneros(Map<String, List<String>> catalogo, List<String> historial) {
         // TODO: Implementar
-        return null;
+
+        Map<String, Integer> generoCantidad = new HashMap<>();
+
+        // Recorremos las series que el usuario HA VISTO
+        for (String serie : historial) {
+            // Usamos el método del Ejercicio 2 para saber su género
+            String genero = buscarGeneroDeSerie(catalogo, serie);
+
+            // Si la serie existe en el catálogo, la contamos
+            if (!genero.equals("Desconocido")) {
+                // getOrDefault busca cuántas llevamos de ese género. Si no hay, devuelve 0. Le sumamos 1.
+                generoCantidad.put(genero, generoCantidad.getOrDefault(genero, 0) + 1);
+            }
+        }
+
+        return generoCantidad;
     }
 }
